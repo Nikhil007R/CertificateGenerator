@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0; 
+}
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+  }
+
+  main {
+    margin: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 75vh;
+  }
+
+  main span{
+    color: red;
+    font-weight: bold;
+
+  }
+
+  h1 {
+    color: #333;
+  }
+
+  p {
+    font-size: 3vh;
+    color: #555;
+    margin-bottom: 5px;
+  }
+
+  .donation-amount {
+    font-size: 3vh;
+    color: #27ae60;
+    font-weight: bold;
+  }
+
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  footer p{
+    color: white;
+    font-size: 1.3em;
+  }

@@ -1,0 +1,208 @@
+// *************************** excel to database ***************************
+
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const inputDataModel = require('./model/model');
+// const multer = require('multer');
+// const excelToJson = require('convert-excel-to-json');
+// const fs = require('fs-extra');
+// const app = express();
+
+// app.use(express.json()); // Move this line up
+
+// var upload = multer({ dest: 'uploads/' });
+
+// // Assuming this is your route to handle Excel file upload and conversion
+// app.post('/read', upload.single('file'), async (req, res) => {
+    //   try {
+        //     if (req.file.filename == null || req.file.filename == 'undefined') {
+            //       res.status(400).json('no file');
+            //     } else {
+                //       let filepath = 'uploads/' + req.file.filename;
+                
+                //       const excelData = excelToJson({
+                    //         sourceFile: filepath,
+                    //         header: {
+                        //           rows: 1,
+                        //         },
+                        //         columnToKey: {
+                            //           '*': '{{columnHeader}}',
+                            //         },
+                            //       });
+                            
+                            //       fs.remove(filepath);
+                            
+                            //       // Assuming the 'Sheet1' is the name of the sheet in your Excel file
+                            //       const jsonData = excelData.Sheet1;
+                            
+                            //       // Save JSON data to MongoDB
+                            //       await inputDataModel.insertMany(jsonData);
+                            
+                            //       res.status(200).json(jsonData);
+                            //     }
+                            //   } catch (error) {
+                                //     console.error('Error in /read endpoint:', error);
+                                //     res.status(500).send('Internal Server Error');
+                                //   }
+                                // });
+                                
+                                // async function startServer() {
+                                    //   try {
+                                        //     await mongoose.connect('mongodb://127.0.0.1:27017/excelToJson');
+//     console.log('Server connected to the database');
+//     app.listen(3000, function (req, res) {
+//       console.log('Hello world');
+//     });
+//   } catch (err) {
+    //     console.error('Server failed to connect to the database', err);
+    //   }
+    // }
+    
+    // startServer();
+
+    // ************************** NodeMailer code **************************
+    
+    // const nodemailer = require('nodemailer')
+    // const path = require("path")
+    // require("dotenv").config();
+    
+    // const mail = nodemailer.createTransport({
+    //     host: 'smtp.gmail.com',
+    //     port: 587,
+    //     secure: false,
+    //     auth: { user: process.env.USER, pass: process.env.APP_PASSWORD },
+    // })
+    
+    // mail.sendMail(
+    //     {
+    //         from: {
+    //                     name: "Nikhil Rawat",
+    //                     address: process.env.USER
+    //                 },
+    //         to: "nikhilrawaa311@gmail.com",
+    //         subject: "learning things",
+    //         text: "First time mailing using nodeMailer",
+    //         attachments: [
+    //                     {
+    //                         filename: 'codsoft.pdf',
+    //                         // path: './codesoft.pdf',
+    //                         path: path.join(__dirname, 'codsoft.pdf'),
+    //                         contentType: 'application/pdf'
+    //                     }
+    //                 ]
+    //     }, (err, result)=>{
+    //     if(err){
+    //         console.log("Error in sending mail", err);
+    //     }
+    //     else{
+    //         console.log("Email sent successfully", result);
+    //     }
+    // })
+
+
+
+
+    
+// ..................................................
+// const generateCertificate = async (user) => {
+//     const htmlContent = await ejs.renderFile('./views/index.ejs', { user });
+//     const pdfFileName = `certificate_${user.Name.replace(/\s+/g, '_')}.pdf`;
+
+//     try {
+//         const pdfOptions = {
+//             format: 'Letter',
+//             base: 'file:///' + path.resolve('./'), // Use this line if you have local CSS or images
+//         };
+
+//         pdf.create(htmlContent, pdfOptions).toFile(pdfFileName, (err, response) => {
+//             if (err) return console.log(err);
+
+//             const transporter = nodemailer.createTransport({
+//                 service: 'gmail',
+//                 auth: {
+//                     user: process.env.USER,
+//                     pass: process.env.APP_PASSWORD,
+//                 },
+//             });
+
+//             const mailOptions = {
+//                 // ... (your existing mail options)
+//                 attachments: [{
+//                     filename: pdfFileName,
+//                     path: response.filename,
+//                     contentType: 'application/pdf',
+//                 }],
+//             };
+
+//             transporter.sendMail(mailOptions, (error, info) => {
+//                 if (error) {
+//                     console.error('Error sending email:', error);
+//                 } else {
+//                     console.log('Email sent:', info.response);
+//                 }
+//             });
+
+//             console.log(user);
+//         });
+
+//     } catch (err) {
+//         console.log(err);
+//     }
+// };
+
+
+
+
+**************************************************
+const generateCertificate = async (user) => {
+    const pdfFileName = `certificate_${user.Name.replace(/\s+/g, '_')}.pdf`;
+
+    try {
+        // Render the HTML content
+        const htmlContent = await ejs.renderFile('index.ejs', { Name: user.Name, Amount: user.Amount });
+
+        // Generate the PDF
+        const result = await a2pClient.wkHtmlToPdf(htmlContent, { filename: pdfFileName });
+        // console.log('PDF Generation Result:', result);
+
+        // Verify that the PDF file is created
+        // const pdfFilePath = path.join(__dirname, pdfFileName);
+        // if (!fs.existsSync(pdfFilePath)) {
+        //     console.error('Error: PDF file not found at', pdfFilePath);
+        //     return;
+        // }
+
+        // Send the email with the attachment
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.USER,
+                pass: process.env.APP_PASSWORD,
+            },
+        });
+
+        const mailOptions = {
+            from: process.env.USER,
+            to: user.Email,
+            subject: '🌳 Your Tree-tastic Certification Has Arrived! 🌿',
+            text: `Hey ${user.Name}! 🌟\n\nHats off to you for being an eco-hero! 🌍 Your generosity is like sunshine for our planet. 🌞\n\nDrumroll, please... 🥁 We're thrilled to share your dazzling Tree Donation Certification! 🎉 Your ${user.Amount} donation for planting  trees is a monumental contribution to our green revolution. 🌱\n\nReady to showcase your green thumb? 🌳 The certificate is attached to this email as a PDF file. Simply open the attachment to view and download your certificate. Keep rocking the green vibes! 🌿\n\nCheers,\nThe Tree Tribe 🌲`,
+            attachments: [{
+                filename: pdfFileName,
+                path: result.FileUrl,
+                contentType: 'application/pdf',
+            }],
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+            } else {
+                console.log('Email sent:', info.response);
+            }
+        });
+
+        console.log(user);
+    } catch (err) {
+        console.log(err);
+    }
+};

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Donation Certificate</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .main{
+            height: 98vh;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;  
+            flex-direction: column;
+        }
+
+        .certificate {
+            max-width: 700px;
+            /* margin: px auto; */
+            background-color: #d3d3d33d;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            /* flex-shrink: ; */
+        }
+
+        h1 {
+            background-image: url(https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+            background-size: cover;
+            background-position: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-stroke: 1px #4CAF50;
+            font-size: 2em;
+            font-weight: bolder;
+            margin: 10px 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        .donation-amount {
+            font-size: 1.5em;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .footer {
+            /* max-width: 700px; */
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            border-radius: 10px;
+            /* position: fixed;
+            bottom: 0; */
+            /* max-width: 800px; */
+            /* margin: 0px 20px;   */
+        }
+
+        @media (300px <= width <= 600px) {
+          .certificate{
+            /* max-width: 500px; */
+            /* background-color: aqua; */
+            padding: 10px;
+            margin: 20px 10px;
+          
+          }
+          p{
+            font-size: 14px;
+            margin: 10px 0;
+          }
+          body{
+            height: 80%;
+          }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+
+      <div class="certificate">
+        <h1>Tree Donation Certificate</h1>
+        <p>This certifies that</p>
+        <p><span class="donor-name"><%= Name%></span></p>
+        <p>has generously donated the amount of</p>
+        <p class="donation-amount">$<%= Amount %></p>
+        <p>for planting <span class="tree-count">5</span> trees.</p>
+        <p>Thank you for your commitment to a greener and healthier planet!</p>
+      </div>
+
+      <div class="footer">
+        <p>© 2023 Tree Plantation Organization. All rights reserved.</p>
+      </div>
+    </div>
+
+</body>
+
+</html>
